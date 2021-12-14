@@ -207,9 +207,11 @@ namespace GradeSystemManagerClasses
 
             classRooms.Add(classroom);
 
-            Console.WriteLine($"You just added a class named: {input}");
+                Console.WriteLine($"You just added a class named: {classroom.ClassName}");
+          
+            
 
-            ClassroomMenu();
+            //ClassroomMenu();
 
 
 
@@ -217,6 +219,9 @@ namespace GradeSystemManagerClasses
         }
         public static void ShowClassroom()
         {
+            Console.WriteLine();
+            Console.WriteLine("****Your Classes****");
+            Console.WriteLine();
             foreach (var classRoom in classRooms)
             {
                 Console.WriteLine(classRoom.ClassName);
@@ -282,26 +287,28 @@ namespace GradeSystemManagerClasses
         public static void RemoveClassroom()
         {
             //Console.Clear();
-            var classroomEntered = Console.ReadLine();
-            var foundClassroom = new Classroom();
-
             Console.WriteLine("Select classroom to remove: ");
-
-            foreach (var classRoom in classRooms)
+            foreach (var classroom in classRooms)
             {
-                Console.WriteLine(classRoom.ClassName);
-           
+                Console.WriteLine(classroom.ClassName);
             }
-            foreach (var classRoom in classRooms)
+            var input = Console.ReadLine();
+            var foundClassroom = new Classroom();
+            foundClassroom.ClassName = input;
+
+
+
+            for (int i = 0; i < classRooms.Count; i++)
             {
-                if (classroomEntered.Equals(classRoom.ClassName))
+                if(input == classRooms[i].ClassName)
                 {
-
-                    classRooms.Remove(foundClassroom);
+                    classRooms.RemoveAt(i);
+                    Console.WriteLine($"You just removed a class named: {i}");
                 }
+
             }
 
-            Console.WriteLine($"You just removed a class named: {foundClassroom}");
+            
 
             ClassroomMenu();
         }
