@@ -271,7 +271,7 @@
             Console.Clear();
             Console.Write($"**{StudentName} worst grade**");
 
-            double worstGrade = 0.0;
+            double worstGrade = 101;
 
             for (int i = 0; i < AssignmentList.Count; i++)
             {

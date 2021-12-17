@@ -19,8 +19,6 @@ namespace GradeSystemManagerClasses
         {
 
             Console.WriteLine();
-    
-
 
             while (true)
             {
