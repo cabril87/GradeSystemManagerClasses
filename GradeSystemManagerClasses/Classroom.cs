@@ -7,7 +7,7 @@
         public int count = 1;
 
         public Classroom() => ClassName = string.Empty;
-        public Classroom(string? classname) => this.ClassName = classname;
+        public Classroom(string? classname) => ClassName = classname;
 
         public void ClassroomEditor()
         {

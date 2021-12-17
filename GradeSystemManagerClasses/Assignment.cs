@@ -7,8 +7,8 @@
         public bool IsComplete { get; set; }
 
 
-        public Assignment() => this.AssignmentName = string.Empty;
-        public Assignment(string? name) => this.AssignmentName = name;
+        public Assignment() => AssignmentName = string.Empty;
+        public Assignment(string? name) => AssignmentName = name;
 
         public Assignment(string name, double grade)
         {

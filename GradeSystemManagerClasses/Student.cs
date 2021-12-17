@@ -6,7 +6,7 @@
         public List<Assignment> AssignmentList = new List<Assignment>();
 
         public Student() => StudentName = string.Empty;
-        public Student(string? name) => this.StudentName = name;
+        public Student(string? name) => StudentName = name;
 
         public void StudentEditor()
         {
