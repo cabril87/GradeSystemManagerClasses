@@ -1,316 +1,276 @@
-﻿
+﻿using Timer = System.Timers.Timer;
 
 namespace GradeSystemManagerClasses
 {
     class Program
     {
         public static List<Classroom> classRooms = new List<Classroom>();
+        public static int counter = 5;
+        public static int count = 1;
 
-
-
-        public static void Main(string[] args)
-        {
-            Console.WriteLine();
-            string title = @"
+        public static string title = @"
 ░█▀▀█ █▀▀█ █▀▀█ █▀▀▄ █▀▀ 　 ░█▀▀▀█ █──█ █▀▀ ▀▀█▀▀ █▀▀ █▀▄▀█ 　 ░█▀▄▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀▀ █▀▀ █▀▀█ 
 ░█─▄▄ █▄▄▀ █▄▄█ █──█ █▀▀ 　 ─▀▀▀▄▄ █▄▄█ ▀▀█ ──█── █▀▀ █─▀─█ 　 ░█░█░█ █▄▄█ █──█ █▄▄█ █─▀█ █▀▀ █▄▄▀ 
 ░█▄▄█ ▀─▀▀ ▀──▀ ▀▀▀─ ▀▀▀ 　 ░█▄▄▄█ ▄▄▄█ ▀▀▀ ──▀── ▀▀▀ ▀───▀ 　 ░█──░█ ▀──▀ ▀──▀ ▀──▀ ▀▀▀▀ ▀▀▀ ▀─▀▀
   ";
 
-            Console.WriteLine(title);
-            Console.WriteLine($"Welcome to the Grade System Manager");
+
+        public static void Main(string[] args)
+        {
+
             Console.WriteLine();
-            Console.WriteLine("Press any key to get started!");
-            Console.WriteLine();
+    
+
+
             while (true)
             {
-                var input = Console.ReadLine();
 
-                if (input != null)
+                Console.WriteLine(title);
+                Console.WriteLine();
+                Console.WriteLine($"Welcome to the Grade System Manager");
+                Console.WriteLine();
+                Console.WriteLine("Press any key to get started!");
+                Console.WriteLine();
+                var cki = Console.ReadKey();
+                if (cki.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+                else
                 {
                     Console.Clear();
-                    MainMenu();
-
-                    switch (input)
-                    {
-                        case "1":
-                            MainMenu();
-                            break;
-                        case "2":
-                            StudentMenu();
-                            break;
-                        case "3":
-                            AssignmentMenu();
-                            break;
-                        case "4":
-                            Exit();
-                            break;
-                        default:
-                            break;
-                    }
                 }
 
-
-                Console.WriteLine();
             }
-
-
-
+            MainMenu();
         }
+
         public static void MainMenu()
         {
             Console.Clear();
             Console.WriteLine();
-           // Console.WriteLine(title);
-            Console.WriteLine($"Welcome to the Grade System Manager");
+            Console.WriteLine($" Welcome to the Grade System Manager");
             Console.WriteLine();
             Console.WriteLine("Press any key to get started!");
             Console.WriteLine("Choose an option:");
-            Console.WriteLine("1) Classrooms");
-            Console.WriteLine("2) Students");
-            Console.WriteLine("3) Assingments");
-            Console.WriteLine("4) Exit");
+            Console.WriteLine("1) Show Classrooms");
+            Console.WriteLine("2) Add Classrooms");
+            Console.WriteLine("3) Remove Classroom");
+            Console.WriteLine("4) Classroom Details Menu");
+            Console.WriteLine("5) Exit");
             Console.Write("\r\nSelect an option: ");
 
             switch (Console.ReadLine())
             {
                 case "1":
-                    ClassroomMenu();
+                    ShowClassroom();
                     break;
                 case "2":
-                    StudentMenu();
+                    AddClassroom();
                     break;
                 case "3":
-                    AssignmentMenu();
+                    RemoveClassroom();
                     break;
                 case "4":
-                    MainMenu();
+                    ClassroomDetailsMenu();
                     break;
                 case "5":
                     Exit();
                     break;
                 default:
-                    Console.WriteLine("That is not a valid option, please try again.");
+                    Console.WriteLine("That is not a valid option, please try again by pressing any key.");
+                    Console.ReadKey();
+                    MainMenu();
                     break;
             }
         }
-        public static void ClassroomMenu()
+
+        public static void DisplayClassroom()
         {
-            Console.Clear();
-            Console.WriteLine("Choose an option:");
-            Console.WriteLine("1) Add classroom");
-            Console.WriteLine("2) Show classrooms");
-            Console.WriteLine("3) Edit classroom");
-            Console.WriteLine("4) Remove classroom");
-            Console.WriteLine("5) Get Class Average");
-            Console.WriteLine("6) Get Top Student");
-            Console.WriteLine("7) Get Worst Student");
-            Console.WriteLine("8) Compare Students");
-            Console.WriteLine("6) Main Menu");
-            Console.WriteLine("6) Students");
-            Console.WriteLine("7) Exit");
-            Console.Write("\r\nSelect an option: ");
-
-            var input = Console.ReadLine();
-            //Classroom classes = new Classroom();
-
-            switch (input)
+            count = 1;
+            foreach (var classroom in classRooms)
             {
-                case "1":
-                    AddClassroom();
-
-                    break;
-
-                case "2":
-                    ShowClassroom();
-
-                    break;
-
-                case "3":
-                    EditClassroom();
-
-                    break;
-
-                case "4":
-                    RemoveClassroom();
-
-
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid input");
-                    break;
+                Console.WriteLine($"{count++}) {classroom.ClassName}");
             }
-
-            //switch (input)
-            //{
-            //    Classroom addClass = new Classroom();
-
-            //case "1":
-
-            //    break;
-            //case "2":
-            //    //show classrooms method();
-            //    break;
-            //case "3":
-            //    //edit classrooms method(); //will need to access list of classroom to select from 
-            //    break;
-            //case "4":
-            //    //remove classrooms method(); // will need to access list of classrooms to select from 
-            //    break;
-            //case "5":
-            //    //get class average method(); //choose class, 
-            //case "6":
-            ////get Top student average(); 
-            //case "7":
-            //    //exit method();//do we want this to return to mainmenu or close app?
-
-            //default:
-            //    break
-
-
-        }
-        public static void StudentMenu()
-        {
-            Console.Clear();
-            Console.WriteLine("Choose an option:");
-            Console.WriteLine("1) Reverse String");
-            Console.WriteLine("2) Remove Whitespace");
-            Console.WriteLine("3) Exit");
-            Console.Write("\r\nSelect an option: ");
-
-
-
-        }
-        public static void AssignmentMenu()
-        {
-            Console.Clear();
-            Console.WriteLine("Choose an option:");
-            Console.WriteLine("1) Get best grade");
-            Console.WriteLine("2) Show worst grade");
-            Console.WriteLine("3) Exit");
-            Console.Write("\r\nSelect an option: ");
-        }
-        public static void Exit()
-        {
-            Console.Clear();
-            Environment.Exit(0);
         }
 
         public static void AddClassroom()
         {
             Console.Clear();
-            Console.WriteLine("Enter a new classroom name: ");
+            Console.Write("Enter new classroom name: ");
+
             var input = Console.ReadLine();
             Classroom classroom = new Classroom(input);
-            //classroom.ClassName = input;
-
             classRooms.Add(classroom);
 
-                Console.WriteLine($"You just added a class named: {classroom.ClassName}");
-          
-            
-
-            //ClassroomMenu();
-
-
-
+            Console.WriteLine();
+            Console.WriteLine($"{count++}) *{classroom.ClassName}* has been added");
+            Console.WriteLine();
+            Console.WriteLine("Press any key to go back to Main Menu!");
+            Console.ReadKey();
+            MainMenu();
 
         }
         public static void ShowClassroom()
         {
-            Console.WriteLine();
-            Console.WriteLine("****Your Classes****");
-            Console.WriteLine();
-            foreach (var classRoom in classRooms)
+            if (classRooms.Count == 0)
             {
-                Console.WriteLine(classRoom.ClassName);
-            }
-            Console.ReadKey();
-
-            ClassroomMenu();
-        }
-
-        public static void EditClassroom()
-        {
-            //while (true)
-            Console.WriteLine("Please select a Classroom you wish visit: ");
-            foreach (var classRoom in classRooms)
-            {
-                Console.WriteLine(classRoom.ClassName);
-            }
-
-            //string selectedClass;
-            //selectedClass = Console.ReadLine();
-            //Classroom selectedClassroom = new Classroom();
-
-            ////after choosing a class (display options to see students>>>>>assignments, 
-
-            //EditTheActualInformation(selectedClass);
-            var classroomEntered = Console.ReadLine();
-            var foundClassroom = new Classroom();
-
-            foreach (var classroom in classRooms)
-            {
-                if (classroomEntered.Equals(classroom.ClassName))
-                {
-                    // we found the classroom 
-                    foundClassroom = classroom;
-                }
-            }
-            if (foundClassroom.ClassName.Length == 0)
-            {
-                Console.WriteLine("Please select a valid class");
-                EditClassroom();
+                Console.Clear();
+                Console.WriteLine("Press any key to go back to Main Menu!");
+                Console.WriteLine();
+                Console.WriteLine("**No classes are in the system, please add a class an try again!**");
+                Console.WriteLine();
+                Console.ReadKey();
+                MainMenu();
             }
             else
             {
-                //Classroom.ClassroomEditor(Classroom foundClassroom);
-
-                ClassroomEditor(foundClassroom);
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine("****All Classrooms****");
+                Console.WriteLine();
+                DisplayClassroom();
+                Console.WriteLine();
+                Console.WriteLine("Press any key to go back to Main Menu!");
+                Console.ReadKey();
+                MainMenu();
             }
-
-            Console.WriteLine();
-
-        }
-
-        public static void ClassroomEditor(Classroom foundClassroom)
-        {
-            Console.WriteLine("entering classroom editor");
-
-
-
-            //later on when you call the methods it will be
-            // foundClassroom.ShowStudent();
         }
 
         public static void RemoveClassroom()
         {
-            //Console.Clear();
-            Console.WriteLine("Select classroom to remove: ");
-            foreach (var classroom in classRooms)
+            if (classRooms.Count == 0)
             {
-                Console.WriteLine(classroom.ClassName);
+                Console.Clear();
+                Console.WriteLine("Press any key to go back to Main Menu!");
+                Console.WriteLine();
+                Console.WriteLine("**No classes are in the system, please add a class an try again!**");
+                Console.WriteLine();
+                Console.ReadKey();
+                MainMenu();
             }
-            var input = Console.ReadLine();
-            var foundClassroom = new Classroom();
-            foundClassroom.ClassName = input;
-
-
-
-            for (int i = 0; i < classRooms.Count; i++)
+            else
             {
-                if(input == classRooms[i].ClassName)
-                {
-                    classRooms.RemoveAt(i);
-                    Console.WriteLine($"You just removed a class named: {i}");
-                }
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine("****Your Classrooms****");
+                Console.WriteLine();
+                DisplayClassroom();
+                Console.WriteLine();
+                Console.Write("Enter classroom you would like to remove: ");
+                
+                string? input = Console.ReadLine();
+                Classroom foundClassroom = new Classroom(input);
 
+                for (int i = 0; i < classRooms.Count; i++)
+                {
+                    if (input == classRooms[i].ClassName)
+                    {
+                        Console.WriteLine($"You just removed: {classRooms[i].ClassName}");
+                        classRooms.RemoveAt(i);
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to go back to Main Menu!");
+                        Console.WriteLine();
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine();
+                        Console.WriteLine("Input not valid, Class names are case sensitive");
+                        Console.WriteLine();
+                        Console.WriteLine("Press enter to try again!");
+                        Console.ReadKey();
+                        RemoveClassroom();
+                    }
+                }
+                MainMenu();
+            }
+        }
+
+        public static void ClassroomDetailsMenu()
+        {
+            Console.Clear();     
+            Console.WriteLine();
+            Console.WriteLine("**Your Classes**");
+            Console.WriteLine();
+            DisplayClassroom();
+            Console.WriteLine();
+            Console.WriteLine("Press ESC to go back to Main Menu");
+            Console.WriteLine();
+
+           if(classRooms.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Press any key to go back to Main Menu!");
+                Console.WriteLine();
+                Console.WriteLine("**No classes are in the system, please add a class an try again!**");
+                Console.WriteLine();
+                Console.ReadKey();
+                Program.MainMenu();
+            }
+            else
+            {
+                Console.Write("Enter a class you would like to edit: ");
+
+                string? classroomInput = Console.ReadLine();
+                Classroom selectedClassroom;
+
+                foreach (var classroom in classRooms)
+                {
+                    if (classroomInput == classroom.ClassName)
+                    {
+                        selectedClassroom = classroom;
+                        selectedClassroom.ClassroomEditor();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine();
+                        Console.WriteLine("Input not valid, Class names are case sensitive");
+                        Console.WriteLine();
+                        Console.WriteLine("Press enter to try again!");
+                        Console.ReadKey();
+                        ClassroomDetailsMenu();
+                    }
+                }
             }
 
             
-
-            ClassroomMenu();
+            
         }
+
+        public static void Exit()
+        {
+            Console.Clear();
+            Console.WriteLine(title);
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit immediatly and go back to menu!");
+            var timer = new Timer(1000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+            var reset = Console.ReadKey();
+            if (reset != null)
+            {
+                counter = 5;
+                Console.Clear();
+            }
+            timer.Stop();
+            
+            MainMenu();
+        }
+
+        private static void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
+        {
+            Console.WriteLine($"Application exiting in {counter--}");
+            if (counter < 0)
+            {
+                Environment.Exit(0);
+            }
+
+        }
+
     }
 }
